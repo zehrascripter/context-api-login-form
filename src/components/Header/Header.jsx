@@ -48,12 +48,12 @@ const Header = () => {
               </Link>
             </li>   
             <li>
-              <Link
+              {/* <Link
                 to="/Signup"
                 className="hover:text-orange-500 transition duration-300"
               >
                 Sign-Up
-              </Link>
+              </Link> */}
             </li>
           </ul>
         </nav>

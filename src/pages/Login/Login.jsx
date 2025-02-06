@@ -29,7 +29,7 @@ const Login = () => {
           placeholder="Enter email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-orange-400"
         />
 
         <input
@@ -37,12 +37,12 @@ const Login = () => {
           placeholder="Enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-md mb-6 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full px-4 py-2 border border-gray-300 rounded-md mb-6 focus:outline-none focus:ring-2 focus:ring-orange-400"
         />
 
         <button
           onClick={handleLogin}
-          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-300"
+          className="w-full bg-orange-500 text-white py-2 rounded-md hover:bg-orange-700 transition duration-300"
         >
           Login
         </button>
