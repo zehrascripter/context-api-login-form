@@ -1,53 +1,54 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AuthContext from "../../context/AuthContext"; // Import AuthContext
+import { useNavigate } from "react-router-dom"; // Navigation ke liye
 
-export default function Login() {
+const Login = () => {
+  const { login } = useContext(AuthContext); // Context se login function le rahe hain
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const navigate = useNavigate(); // Navigation ke liye
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (email === "zehra@gmail.com" && password === "12345") {
-      setMessage("Login Successful ✅");
+  const handleLogin = () => {
+    if (email && password) {
+      login(); // User ko login kar rahe hain
+      navigate("/signup"); // Signup page pe redirect
     } else {
-      setMessage("Invalid Credentials ❌");
+      alert("Please enter email and password!");
     }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-        <form onSubmit={handleLogin}>
-          <div className="mb-4">
-            <label className="block text-gray-700">Email:</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-              required
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Password:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
-          >
-            Login
-          </button>
-        </form>
-        {message && <p className="mt-4 text-center text-red-500">{message}</p>}
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white shadow-lg rounded-lg p-8 w-96">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          Login Page
+        </h2>
+
+        <input
+          type="email"
+          placeholder="Enter email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+
+        <input
+          type="password"
+          placeholder="Enter password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-md mb-6 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+
+        <button
+          onClick={handleLogin}
+          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-300"
+        >
+          Login
+        </button>
       </div>
     </div>
   );
-}
+};
+
+export default Login;
