@@ -139,7 +139,7 @@ const Header = () => {
                 Login
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 to="/Signup"
                 className="hover:text-orange-500 transition duration-300"
@@ -147,7 +147,7 @@ const Header = () => {
               >
                 Sign-Up
               </Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
       )}
