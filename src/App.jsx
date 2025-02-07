@@ -1,36 +1,36 @@
-import React, { useContext } from "react";
-import { Route, Routes, Navigate } from "react-router-dom"; // Navigate import kiya
+import { Route, Routes} from "react-router-dom"; // Navigate import kiya
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Header from "./components/Header/Header";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
-import Login from "./pages/Login/Login";
-import Signup from "./pages/Signup/Signup";
-import { AuthProvider } from "./context/AuthContext"; // AuthProvider import kiya
-import AuthContext from "./context/AuthContext"; // AuthContext import kiya
+import Signup from "./pages/Reggister-Login/Signup";
+import Login from "./pages/Reggister-Login/Login";
+import { Toaster } from "react-hot-toast";
+
 
 const App = () => {
-  const { isLoggedIn } = useContext(AuthContext); // Login state ko use kar rahe hain
 
   return (
     <>
+    <Toaster />
       <Header />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/signup" element={<Signup/>} />
+        <Route path="/login" element={<Login/>} />
 
         {/* Authentication Logic */}
-        <Route
+         {/* <Route
           path="/login"
           element={isLoggedIn ? <Navigate to="/signup" /> : <Login />}
         />
         <Route
           path="/signup"
           element={isLoggedIn ? <Signup /> : <Navigate to="/login" />}
-        />
+        /> */}
 
         <Route path="/:id" element={<ProductDetails />} />
       </Routes>

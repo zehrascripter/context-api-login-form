@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../../components/Card/Card';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom'; // ✅ Fixed Import
 
 const Home = () => {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const Home = () => {
         {products?.map((product) => (
           <div
             key={product.id}
-            onClick={() => navigate(`/${product.id}`)}
+            onClick={() => navigate(`/${product.id}`)}  // ✅ Fixed Syntax
             className="cursor-pointer transform hover:scale-105 transition duration-300"
           >
             <Card product={product} />
