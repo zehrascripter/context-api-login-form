@@ -63,8 +63,8 @@ const Header = () => {
           </ul>
         </nav>
 
-        {/* ✅ Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-2">
+        {/* ✅ Mobile Menu Button with User Image */}
+        <div className="md:hidden flex items-center gap-3">
           {user && user.image ? (
             <img 
               src={user.image} 
@@ -76,7 +76,8 @@ const Header = () => {
               {user.name.charAt(0).toUpperCase()}
             </span>
           ) : null}
-          
+
+          {/* Hamburger Icon */}
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-600 hover:text-orange-500 focus:outline-none">
             {isMenuOpen ? (
               <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -90,6 +91,25 @@ const Header = () => {
           </button>
         </div>
       </div>
+
+      {/* ✅ Mobile Navigation Menu */}
+      {isMenuOpen && (
+        <ul className="md:hidden absolute top-16 left-0 w-full bg-white shadow-md flex flex-col items-center gap-4 py-4">
+          <li><Link to="/" className="hover:text-orange-500 transition duration-300">Home</Link></li>
+          <li><Link to="/About" className="hover:text-orange-500 transition duration-300">About</Link></li>
+          <li><Link to="/Contact" className="hover:text-orange-500 transition duration-300">Contact</Link></li>
+          {user ? (
+            <li className="flex flex-col items-center">
+              <button onClick={handleLogout} className="text-red-500 mt-2">Logout</button>
+            </li>
+          ) : (
+            <>
+              <li><Link to="/signup" className="hover:text-orange-500 transition duration-300">Signup</Link></li>
+              <li><Link to="/login" className="hover:text-orange-500 transition duration-300 bg-orange-500 text-white px-4 py-1 rounded-md shadow-md hover:bg-orange-600">Login</Link></li>
+            </>
+          )}
+        </ul>
+      )}
     </header>
   );
 };
