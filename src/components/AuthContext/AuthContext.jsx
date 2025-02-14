@@ -16,7 +16,7 @@ const AuthContext = ({ children }) => {
         }
     }, []);
 
-    // ✅ Signup Function
+    // ✅ Signup Function (Now saves image too)
     const signup = (data) => {
         const userStringData = localStorage.getItem('UserRegistration');
         const registrationData = userStringData ? JSON.parse(userStringData) : [];
@@ -33,7 +33,7 @@ const AuthContext = ({ children }) => {
         }
     };
 
-    // ✅ Login Function
+    // ✅ Login Function (Fetches Image from LocalStorage)
     const login = (data) => {
         const userStringData = localStorage.getItem('UserRegistration');
         const registrationData = userStringData ? JSON.parse(userStringData) : [];
@@ -44,7 +44,8 @@ const AuthContext = ({ children }) => {
             if (data.password === availableUser.password) {
                 localStorage.setItem('UserLogin', JSON.stringify({
                     name: availableUser.name,
-                    email: availableUser.email
+                    email: availableUser.email,
+                    image: availableUser.image || null,  // ✅ Image bhi save hogi
                 }));
                 setUser(availableUser);
                 toast.success("Login successful! Redirecting...");
