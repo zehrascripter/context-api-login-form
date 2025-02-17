@@ -7,6 +7,7 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Signup from "./pages/Reggister-Login/Signup";
 import Login from "./pages/Reggister-Login/Login";
 import { Toaster } from "react-hot-toast";
+import Cart from "./pages/Cart/Cart";
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/signup" element={<Signup/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path="/cart" element={<Cart/>} />
 
         {/* Authentication Logic */}
          {/* <Route

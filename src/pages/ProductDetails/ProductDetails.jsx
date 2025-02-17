@@ -1,9 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router';
+import { CartContextValue } from '../../components/CartContext/CartContext';
+import Button from '../../components/Button/button';
+
 
 const ProductDetails = () => {
   const params = useParams();
   const id = Number(params.id);
+
+  // ===================ContextApi================
+  const cartContextValue = useContext(CartContextValue);
+  const { addToCart } = cartContextValue;
 
   // State for the product
   const [product, setProduct] = useState(null);
@@ -63,6 +70,14 @@ const ProductDetails = () => {
               ({product.rating.count} reviews)
             </span>
           </div>
+          {/* addtocart */}
+          <div onClick={() => addToCart(product)}>
+          <Button
+            text="Add to Cart"
+            bgColor="bg-orange-500"
+            color="text-white"
+          />
+        </div>
         </div>
 
         {/* Comment Section */}
@@ -70,17 +85,17 @@ const ProductDetails = () => {
           <h2 className="text-xl font-bold text-gray-800 mb-4">Comments</h2>
 
           {/* Comment Input */}
-          <div className="flex items-center space-x-4 mb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-4">
             <input
               type="text"
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
               placeholder="Add a comment..."
-              className="flex-grow px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
             <button
               onClick={handleAddComment}
-              className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+              className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition duration-300 w-full sm:w-auto"
             >
               Post
             </button>
@@ -92,7 +107,7 @@ const ProductDetails = () => {
               comments.map((comment, index) => (
                 <div
                   key={index}
-                  className="bg-gray-100 p-4 rounded-lg mb-2 border border-gray-200"
+                   className="bg-gray-100 p-4 rounded-lg mb-2 border border-gray-200 break-words overflow-hidden"
                 >
                   {comment}
                 </div>

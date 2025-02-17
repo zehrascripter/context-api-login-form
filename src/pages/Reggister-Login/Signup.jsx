@@ -1,5 +1,4 @@
-// Signup.js
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContextValue } from '../../components/AuthContext/AuthContext';
 import { Link } from 'react-router-dom';
@@ -7,6 +6,7 @@ import { Link } from 'react-router-dom';
 const Signup = () => {
     const { signup } = useContext(AuthContextValue);
     const { register, handleSubmit } = useForm();
+    const [preview, setPreview] = useState(null);
 
     const onSubmit = (data) => {
         const reader = new FileReader();
@@ -18,6 +18,17 @@ const Signup = () => {
             reader.readAsDataURL(data.image[0]);
         } else {
             signup(data);
+        }
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreview(reader.result);
+            };
+            reader.readAsDataURL(file);
         }
     };
 
@@ -44,11 +55,26 @@ const Signup = () => {
                         placeholder="Password" 
                         className="w-full border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all"
                     />
+                    
+                    {/* Image Upload */}
                     <input 
                         type="file" 
                         {...register("image")} 
+                        onChange={handleImageChange}
                         className="w-full border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all"
                     />
+
+                    {/* Image Preview */}
+                    {preview && (
+                        <div className="flex justify-center mt-3">
+                            <img 
+                                src={preview} 
+                                alt="Preview" 
+                                className="w-24 h-24 object-cover rounded-full border-2 border-orange-500"
+                            />
+                        </div>
+                    )}
+
                     <button 
                         type="submit"
                         className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-md transition-all shadow-md"
