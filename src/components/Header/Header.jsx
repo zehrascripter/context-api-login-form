@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContextValue } from '../../components/AuthContext/AuthContext';
 import toast from 'react-hot-toast';
@@ -20,6 +20,18 @@ const Header = () => {
     setUser(null);
     navigate('/login');
   };
+
+  // ✅ Close Menu on Scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMenuOpen]);
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
