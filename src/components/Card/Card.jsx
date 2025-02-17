@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Button from "../Button/button";
 import { CartContextValue } from "../CartContext/CartContext";
+import { useNavigate } from "react-router";
 
 const Card = ({ product }) => {
   // ================contextApi=================
@@ -8,6 +9,8 @@ const Card = ({ product }) => {
   const { addToCart } = cartContextValue;
 
   const { title, price, description, category, image, rating } = product;
+
+  const navigate = useNavigate();
 
   return (
     <div className="max-w-sm bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 transform hover:scale-105">
@@ -43,6 +46,11 @@ const Card = ({ product }) => {
             color="text-white"
           />
         </div>
+
+         <div className="text-lg font-semibold text-gray-800 mt-2 py-2 rounded-lg cursor-pointer hover:opacity-80" onClick={() => navigate(`/${product.id}`)}> 
+          <p>View Details</p>
+        </div>
+        
 
         {/* Description */}
         <p className="text-gray-600 text-sm mt-2 line-clamp-2">{description}</p>

@@ -25,7 +25,7 @@ const Home = () => {
         {products?.map((product) => (
           <div
             key={product.id}
-            onClick={() => navigate(`/${product.id}`)}  // ✅ Fixed Syntax
+            // onClick={() => navigate(`/${product.id}`)}  // ✅ Fixed Syntax
             className="cursor-pointer transform hover:scale-105 transition duration-300"
           >
             <Card product={product} />

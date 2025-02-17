@@ -6,14 +6,16 @@ const Cart = () => {
   const { cartItems, addToCart, removeFromCart, deleteItemFromCart } = cartContextValue; // ✅ Delete function bhi le lo
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-4">
+    <div className="min-h-screen py-10 px-4">
       <div className="container mx-auto max-w-7xl">
         {cartItems.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {cartItems.map((item) => (
               <div key={item.id} className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                 <h2 className="text-xl font-semibold text-gray-800 mb-4">{item.title}</h2>
-                <div className="w-full h-64 bg-gray-200 mb-4 flex justify-center items-center">
+                
+                {/* ✅ Image Background ko White kar diya */}
+                <div className="w-full h-64 bg-white mb-4 flex justify-center items-center">
                   <img src={item.image} alt={item.title} className="object-contain max-h-full max-w-full" />
                 </div>
 
